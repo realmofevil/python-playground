@@ -15,6 +15,21 @@ def len_me(x):
     return length
 
 
+def reverse_me(x):
+    """implementation of a basic reverse order function"""
+    return x[::-1]
+    # # alternative algorithms with while and for loops outside of a function
+    # index = len_me(x)-1
+    # while index >= 0:
+    #     print_me(x[index])
+    #     index -= 1
+    #
+    # index = len_me(x)-1
+    # for _ in x:
+    #     print_me(x[index])
+    #     index -= 1
+
+
 def fizz_buzz(num):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
