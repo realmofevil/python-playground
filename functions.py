@@ -42,10 +42,8 @@ def is_palindrome(x, y):
     """implementation of a basic palindrome function, as a side-effect of the above mirror function"""
     x = str(x)
     mirrored = ""
-    index = len_me(x)-1
-    for _ in x:
-        mirrored += x[index]
-        index -= 1
+    for index, _ in enumerate(x, 1):
+        mirrored += x[-index]
     if str(y) == mirrored:
         return True
     else:
