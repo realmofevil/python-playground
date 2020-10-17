@@ -33,10 +33,8 @@ def mirror_me(x):
     """implementation of a basic mirror sting function, as a side-effect of the above reversed order algorithms"""
     x = str(x)
     mirrored = ""
-    index = len_me(x)-1
-    for _ in x:
-        mirrored += x[index]
-        index -= 1
+    for index, _ in enumerate(x, 1):
+        mirrored += x[-index]
     return mirrored
 
 
@@ -69,7 +67,7 @@ def fizz_buzz(num):
         return num
 
 
-# arcane solution of FizzBuzz with slicing, within a list comprehention and unpacking it
+# arcane solution of FizzBuzz with slicing, within a list comprehension and unpacking it
 # fizzbuzz = ["Fizz"[num%3*4::]+"Buzz"[num%5*4::] or num for num in range(1,101)]
 # print_me(*fizzbuzz, sep = "\n")
 
