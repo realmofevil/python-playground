@@ -59,7 +59,7 @@ def fizz_buzz(num):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
     buzz = num % 5 == 0
-    fizzbuzz = num % 15 == 0  # shorthand for num % 3 == 0 and num % 5 == 0
+    fizzbuzz = num % 15 == 0	# shorthand for num % 3 == 0 and num % 5 == 0
     if fizzbuzz:
         return "FizzBuzz"
     elif fizz:
@@ -74,17 +74,18 @@ def fizz_buzz(num):
 #     print_me(fizz_buzz(_))
 
 
-# create an HTML file and do the FizzBuzz with CSS selectors
+# create an HTML file, generate sample data, and solve FizzBuzz with CSS selectors
 with open("fizzbuzz.html", "a") as the_file:
-    the_file.write("<style>\n" \
-                   "div {display: table-row;}\n" \
-                   "div:nth-child(3n+0) {background-color: green;}\n" \
-                   "div:nth-child(5n+0) {background-color: red;}\n" \
-                   "div:nth-child(15n+0) {background-color: yellow;}\n" \
-                   "</style>\n" \
-                   "<html><body>\n")
+    the_file.write("<html>\n"
+                   "<style>\n"
+                   "div {display: table-row;}\n"
+                   "div:nth-child(3n+0) {background-color: green;}\n"
+                   "div:nth-child(5n+0) {background-color: red;}\n"
+                   "div:nth-child(15n+0) {background-color: yellow;}\n"
+                   "</style>\n"
+                   "<body>\n")
 for _ in range(1, 101):
     with open('fizzbuzz.html', "a") as the_file:
         the_file.write("<div>" + str(fizz_buzz(_)) + "</div>\n")
 with open("fizzbuzz.html", "a") as the_file:
-    the_file.write("</body></html>")
+    the_file.write("</body>\n</html>")
