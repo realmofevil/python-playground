@@ -70,9 +70,9 @@ def fizz_buzz(num):
         return num
 
 
-# for _ in range(1,101):
-#     print_me(fizz_buzz(_))
-
+# arcane solution of FizzBuzz with slicing, within a list and unpacking it
+# fizzbuzz = ["Fizz"[num%3*4::]+"Buzz"[num%5*4::] or num for num in range(1,101)]
+# print_me(*fizzbuzz, sep = "\n")
 
 # create an HTML file, generate sample data, and solve FizzBuzz with CSS selectors
 with open("fizzbuzz.html", "a") as the_file:
