@@ -9,9 +9,8 @@ def print_me(x):
 
 def len_me(x):
     """implementation of a basic length function"""
-    length = 0
-    for _ in x:
-        length += 1
+    for length, _ in enumerate(x, 1):
+        pass
     return length
 
 
@@ -70,7 +69,7 @@ def fizz_buzz(num):
         return num
 
 
-# arcane solution of FizzBuzz with slicing, within a list and unpacking it
+# arcane solution of FizzBuzz with slicing, within a list comprehention and unpacking it
 # fizzbuzz = ["Fizz"[num%3*4::]+"Buzz"[num%5*4::] or num for num in range(1,101)]
 # print_me(*fizzbuzz, sep = "\n")
 
