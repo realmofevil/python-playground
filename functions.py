@@ -30,6 +30,17 @@ def reverse_me(x):
     #     index -= 1
 
 
+def mirror_me(x):
+    """implementation of a basic mirror sting function, as a side-effect of the above reversed order algorithms"""
+    x = str(x)
+    mirrored = ""
+    index = len_me(x)-1
+    for _ in x:
+        mirrored += x[index]
+        index -= 1
+    return mirrored
+
+
 def fizz_buzz(num):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
