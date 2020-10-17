@@ -23,10 +23,8 @@ def reverse_me(x):
     #     print_me(x[index])
     #     index -= 1
     #
-    # index = len_me(x)-1
-    # for _ in x:
-    #     print_me(x[index])
-    #     index -= 1
+    # for index, _ in enumerate(x, 1):
+    #     print_me(x[-index], end="")
 
 
 def mirror_me(x):
