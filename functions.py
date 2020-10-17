@@ -41,6 +41,20 @@ def mirror_me(x):
     return mirrored
 
 
+def is_palindrome(x, y):
+    """implementation of a basic palindrome function, as a side-effect of the above mirror function"""
+    x = str(x)
+    mirrored = ""
+    index = len_me(x)-1
+    for _ in x:
+        mirrored += x[index]
+        index -= 1
+    if str(y) == mirrored:
+        return True
+    else:
+        return False
+
+
 def fizz_buzz(num):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
