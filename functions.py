@@ -9,6 +9,7 @@ def print_me(x):
 
 def len_me(x):
     """implementation of a basic length function"""
+    x = str(x)
     for length, _ in enumerate(x, 1):
         pass
     return length
