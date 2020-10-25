@@ -1,13 +1,13 @@
 import sys
 
 
-def print_me(x):
+def print_me(x=""):
     """implementation of a basic print function"""
     x = str(x) + "\n"
     return sys.stdout.write(x)
 
 
-def len_me(x):
+def len_me(x=None):
     """implementation of a basic length function"""
     x = str(x)
     for length, _ in enumerate(x, 1):
@@ -15,7 +15,7 @@ def len_me(x):
     return length
 
 
-def reverse_me(x):
+def reverse_me(x=None):
     """implementation of a basic reverse order function"""
     return x[::-1]
     # # alternative algorithms with while and for loops outside of a function
@@ -28,7 +28,7 @@ def reverse_me(x):
     #     print_me(x[-index], end="")
 
 
-def mirror_me(x):
+def mirror_me(x=None):
     """implementation of a basic mirror sting function, as a side-effect of the above reversed order algorithms"""
     x = str(x)
     mirrored = ""
@@ -50,6 +50,7 @@ def is_palindrome(x, y):
 
 
 def fizz_buzz(num):
+def fizz_buzz(num=None):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
     buzz = num % 5 == 0
