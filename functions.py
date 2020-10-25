@@ -37,14 +37,14 @@ def mirror_me(x=None):
     return mirrored
 
 
-def is_palindrome(x, y):
+def is_palindrome(x):
     """implementation of a basic palindrome function, as a side-effect of the above mirror function,
-    shorthand alternative with slicing x[::] == y[::-1]"""
+    shorthand alternative with slicing x == x[::-1]"""
     x = str(x)
     mirrored = ""
-    for index, _ in enumerate(x, 1):
-        mirrored += x[-index]
-    if str(y) == mirrored:
+    for _ in x:
+        mirrored = _ + mirrored
+    if x == mirrored:
         return True
     return False
 
