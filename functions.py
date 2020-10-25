@@ -49,7 +49,6 @@ def is_palindrome(x, y):
         return False
 
 
-def fizz_buzz(num):
 def fizz_buzz(num=None):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
