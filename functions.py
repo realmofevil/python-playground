@@ -83,3 +83,60 @@ for _ in range(1, 101):
         the_file.write("<div>" + str(fizz_buzz(_)) + "</div>\n")
 with open("fizzbuzz.html", "a") as the_file:
     the_file.write("</body>\n</html>")
+
+
+def is_valid_card(x):
+    """implementation of the https://en.wikipedia.org/wiki/Luhn_algorithm for bank card validation,
+    tasked by https://cs50.harvard.edu/x/2020/psets/1/credit/"""
+
+    amex = ("34", "37")
+    maestro = ("5018", "5020", "5038", "5612", "5893", "6304", "6759", "6761", "6762", "6763", "0604", "6390")
+    master = ("51", "52", "53", "54", "55")
+    master2017 = (str(_) for _ in range(2221, 2721))
+    visa = ("4",)
+    visa_e = ("4026", "417500", "4405", "4508", "4844", "4913", "4917")
+
+    reverse = x[::-1]
+    # even_digits = ""
+    # for i in reverse[1::2]:
+    #     multiply = int(i) * 2
+    #     even_digits += str(multiply)
+    #
+    # odd_digits = ""
+    # for i in reverse[::2]:
+    #     odd_digits += str(i)
+    #
+    # odd_digits = ""
+    # for index, i in enumerate(reverse):
+    #     if index % 2 != 0:
+    #         odd_digits += str(i)
+    every_second_digit = [int(i) * 2 for i in reverse[1::2]]
+    every_second_digit = "".join([str(i) for i in every_second_digit])
+    odd_digits = [i for i in reverse[::2]]
+    odd_digits = "".join([str(i) for i in odd_digits])
+
+    sum_even = 0
+    for i in every_second_digit:
+        sum_even += int(i)
+
+    sum_odd = 0
+    for i in odd_digits:
+        sum_odd += int(i)
+
+    checksum = sum_even + sum_odd
+
+    if checksum % 10 == 0 and 11 < len(x) < 20:
+        if x[:2] in amex:
+            return "AMEX"
+        elif x[:4] in maestro:
+            return "Maestro"
+        elif x[:2] in master or x[:4] in master2017:
+            return "MasterCard"
+        elif x[:4] in visa_e:
+            return "Visa Electron"
+        elif x[:1] in visa:
+            return "Visa"
+        else:
+            return "Valid number but issuer not identified"
+    else:
+        return "INVALID"
