@@ -38,15 +38,15 @@ def mirror_me(x=None):
 
 
 def is_palindrome(x, y):
-    """implementation of a basic palindrome function, as a side-effect of the above mirror function"""
+    """implementation of a basic palindrome function, as a side-effect of the above mirror function,
+    shorthand alternative with slicing x[::] == y[::-1]"""
     x = str(x)
     mirrored = ""
     for index, _ in enumerate(x, 1):
         mirrored += x[-index]
     if str(y) == mirrored:
         return True
-    else:
-        return False
+    return False
 
 
 def fizz_buzz(num=None):
