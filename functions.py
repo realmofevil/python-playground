@@ -40,7 +40,7 @@ def mirror_me(x=None):
 def is_palindrome(x):
     """implementation of a basic palindrome function, as a side-effect of the above mirror function,
     shorthand alternative with slicing x == x[::-1]"""
-    x = str(x)
+    x = str(x).casefold()
     mirrored = ""
     for _ in x:
         mirrored = _ + mirrored
