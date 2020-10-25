@@ -115,6 +115,10 @@ def is_valid_card(x):
     odd_digits = [_ for _ in reverse[::2]]
     # odd_digits = "".join([str(_) for _ in odd_digits])
 
+    # alternative summation, after join
+    # sum_even = sum(int(_) for _ in every_second_digit)
+    # sum_odd = sum(int(_) for _ in odd_digits)
+
     # sum_even = 0
     # for _ in every_second_digit:
     #     sum_even += int(_)
