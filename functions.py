@@ -98,30 +98,43 @@ def is_valid_card(x):
 
     reverse = x[::-1]
     # even_digits = ""
-    # for i in reverse[1::2]:
-    #     multiply = int(i) * 2
+    # for _ in reverse[1::2]:
+    #     multiply = int(_) * 2
     #     even_digits += str(multiply)
     #
     # odd_digits = ""
-    # for i in reverse[::2]:
-    #     odd_digits += str(i)
+    # for _ in reverse[::2]:
+    #     odd_digits += str(_)
     #
-    # odd_digits = ""
-    # for index, i in enumerate(reverse):
-    #     if index % 2 != 0:
-    #         odd_digits += str(i)
-    every_second_digit = [int(i) * 2 for i in reverse[1::2]]
-    every_second_digit = "".join([str(i) for i in every_second_digit])
-    odd_digits = [i for i in reverse[::2]]
-    odd_digits = "".join([str(i) for i in odd_digits])
+    # # odd_digits = ""
+    # # for index, _ in enumerate(reverse):
+    # #     if index % 2 != 0:
+    # #         odd_digits += str(_)
+    every_second_digit = [int(_) * 2 for _ in reverse[1::2]]
+    # every_second_digit = "".join([str(_) for _ in every_second_digit])
+    odd_digits = [_ for _ in reverse[::2]]
+    # odd_digits = "".join([str(_) for _ in odd_digits])
 
-    sum_even = 0
-    for i in every_second_digit:
-        sum_even += int(i)
+    # sum_even = 0
+    # for _ in every_second_digit:
+    #     sum_even += int(_)
+    #
+    # sum_odd = 0
+    # for _ in odd_digits:
+    #     sum_odd += int(_)
 
-    sum_odd = 0
-    for i in odd_digits:
-        sum_odd += int(i)
+    # sum_even = 0
+    # for _ in even_digits:
+    #     for digit in str(_):
+    #         sum_even += int(digit)
+    #
+    # sum_odd = 0
+    # for _ in odd_digits:
+    #     for digit in str(_):
+    #         sum_odd += int(digit)
+    # shorthanded expressions for summation of all the digits, their logic is expanded above
+    sum_even = sum(int(digit) for _ in every_second_digit for digit in str(_))
+    sum_odd = sum(int(digit) for _ in odd_digits for digit in str(_))
 
     checksum = sum_even + sum_odd
 
