@@ -30,6 +30,10 @@ def reverse_me(x=None):
 
 def mirror_me(x=None):
     """implementation of a basic mirror sting function, as a side-effect of the above reversed order algorithms"""
+    # if len(x) == 0:
+    #     return x
+    # else:
+    #     return mirror_me(x[1:]) + x[0]
     x = str(x)
     mirrored = ""
     for index, _ in enumerate(x, 1):
@@ -64,25 +68,25 @@ def fizz_buzz(num=None):
         return num
 
 
-# arcane solution of FizzBuzz with slicing, within a list comprehension and unpacking it
+# # arcane solution of FizzBuzz with slicing, within a list comprehension and unpacking it
 # fizzbuzz = ["Fizz"[num%3*4::]+"Buzz"[num%5*4::] or num for num in range(1,101)]
 # print_me(*fizzbuzz, sep = "\n")
 
-# create an HTML file, generate sample data, and solve FizzBuzz with CSS selectors
-with open("fizzbuzz.html", "a") as the_file:
-    the_file.write("<html>\n"
-                   "<style>\n"
-                   "div {display: table-row;}\n"
-                   "div:nth-child(3n+0) {background-color: green;}\n"
-                   "div:nth-child(5n+0) {background-color: red;}\n"
-                   "div:nth-child(15n+0) {background-color: yellow;}\n"
-                   "</style>\n"
-                   "<body>\n")
-for _ in range(1, 101):
-    with open('fizzbuzz.html', "a") as the_file:
-        the_file.write("<div>" + str(fizz_buzz(_)) + "</div>\n")
-with open("fizzbuzz.html", "a") as the_file:
-    the_file.write("</body>\n</html>")
+# # create an HTML file, generate sample data, and solve FizzBuzz with CSS selectors
+# with open("fizzbuzz.html", "a") as the_file:
+#     the_file.write("<html>\n"
+#                    "<style>\n"
+#                    "div {display: table-row;}\n"
+#                    "div:nth-child(3n+0) {background-color: green;}\n"
+#                    "div:nth-child(5n+0) {background-color: red;}\n"
+#                    "div:nth-child(15n+0) {background-color: yellow;}\n"
+#                    "</style>\n"
+#                    "<body>\n")
+# for _ in range(1, 101):
+#     with open('fizzbuzz.html', "a") as the_file:
+#         the_file.write("<div>" + str(fizz_buzz(_)) + "</div>\n")
+# with open("fizzbuzz.html", "a") as the_file:
+#     the_file.write("</body>\n</html>")
 
 
 def is_valid_card(x):
