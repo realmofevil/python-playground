@@ -9,8 +9,7 @@ def print_me(x=""):
 
 def len_me(x):
     """implementation of a basic length function"""
-    x = str(x)
-    for length, _ in enumerate(x, 1):
+    for length, _ in enumerate(str(x), 1):
         pass
     return length
 
@@ -34,9 +33,8 @@ def mirror_me(x=""):
     #     return x
     # else:
     #     return mirror_me(x[1:]) + x[0]
-    x = str(x)
     mirrored = ""
-    for _ in x:
+    for _ in str(x):
         mirrored = _ + mirrored
     return mirrored
 
@@ -44,11 +42,10 @@ def mirror_me(x=""):
 def is_palindrome(x):
     """implementation of a basic palindrome function, as a side-effect of the above mirror function,
     shorthand alternative with slicing x == x[::-1]"""
-    x = str(x).casefold()
     mirrored = ""
-    for _ in x:
+    for _ in str(x).casefold():
         mirrored = _ + mirrored
-    if x == mirrored:
+    if str(x) == mirrored:
         return True
     return False
 
