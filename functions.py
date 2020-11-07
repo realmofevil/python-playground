@@ -41,7 +41,8 @@ def mirror_me(x=""):
 
 def is_palindrome(x):
     """implementation of a basic palindrome function, as a side-effect of the above mirror function,
-    shorthand alternative with slicing x == x[::-1]"""
+    shorthand alternative with slicing x == x[::-1]
+    """
     x = str(x).casefold()
     mirrored = ""
     for _ in x:
@@ -51,7 +52,7 @@ def is_palindrome(x):
     return False
 
 
-def fizz_buzz(num):
+def fizz_buzz(num: int):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
     buzz = num % 5 == 0
@@ -87,9 +88,10 @@ def fizz_buzz(num):
 #     the_file.write("</body>\n</html>")
 
 
-def is_valid_card(x):
+def is_valid_card(x: str) -> str:
     """implementation of the https://en.wikipedia.org/wiki/Luhn_algorithm for bank card validation,
-    tasked by https://cs50.harvard.edu/x/2020/psets/1/credit/"""
+    tasked by https://cs50.harvard.edu/x/2020/psets/1/credit/
+    """
 
     amex = ("34", "37")
     maestro = ("5018", "5020", "5038", "5612", "5893", "6304", "6759", "6761", "6762", "6763", "0604", "6390")
