@@ -74,12 +74,14 @@ def fizz_buzz(num: int):
 # # create an HTML file, generate sample data, and solve FizzBuzz with CSS selectors
 # with open("fizzbuzz.html", "a") as the_file:
 #     the_file.write("<html>\n"
+#                    "<head>\n"
 #                    "<style>\n"
 #                    "div {display: table-row;}\n"
 #                    "div:nth-child(3n+0) {background-color: green;}\n"
 #                    "div:nth-child(5n+0) {background-color: red;}\n"
 #                    "div:nth-child(15n+0) {background-color: yellow;}\n"
 #                    "</style>\n"
+#                    "</head>\n"
 #                    "<body>\n")
 # for _ in range(1, 101):
 #     with open('fizzbuzz.html', "a") as the_file:
