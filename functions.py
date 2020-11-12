@@ -56,7 +56,7 @@ def fizz_buzz(num: int):
     """implementation of the Fizz Buzz algorithm"""
     fizz = num % 3 == 0
     buzz = num % 5 == 0
-    fizzbuzz = num % 15 == 0	# shorthand for num % 3 == 0 and num % 5 == 0
+    fizzbuzz = num % 15 == 0    # shorthand for num % 3 == 0 and num % 5 == 0
     if fizzbuzz:
         return "FizzBuzz"
     elif fizz:
