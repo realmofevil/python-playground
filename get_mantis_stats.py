@@ -19,8 +19,7 @@ for project in projects:
     response = requests.get(project, headers=header)
     issues = response.json()["issues"]    # JSON object to a dict inside a list
     if "filter_id=100" in project:
-        issue_id = [issue["id"] for issue in issues]    # print(issues[0]["id"], issues[0]["project"]["name"])
-        open_today += len(issue_id)
+        open_today += len([issue["id"] for issue in issues])
     elif "filter_id=1115" in project:
         get_datetime = [issue["updated_at"] for issue in issues]    # %Y-%m-%dT%H:%M:%S%z ISO 8601 format
         resolved_today = [datetime.fromisoformat(issue).date() for issue in get_datetime].count(today)
@@ -31,7 +30,7 @@ for project in projects:
         resolved_today = 0
 
 
-# debug helpers
+# debug helpers #
 
 # pid = [issue["project"]["id"] for issue in issues]
 # status = [issue["status"]["name"] for issue in issues]
@@ -40,11 +39,12 @@ for project in projects:
 #                 for issue in issues
 #                 if (issue["resolution"]["name"] == "open" or issue["resolution"]["name"] == "reopened")]
 # check = list(zip(pid_status, issue_filter))
+# print(issues[0]["id"], issues[0]["project"]["name"])
 
 
-def prettify(x):
-    formatted = json.dumps(x, indent=3)
-    print(formatted)
+# def prettify(x):
+#     formatted = json.dumps(x, indent=3)
+#     print(formatted)
 
 
 # data = response.json()
