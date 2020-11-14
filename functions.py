@@ -2,20 +2,20 @@ import sys
 
 
 def print_me(x=""):
-    """implementation of a basic print function"""
+    """a basic print function"""
     x = str(x) + "\n"
     return sys.stdout.write(x)
 
 
 def len_me(x):
-    """implementation of a basic length function"""
+    """a basic length function"""
     for length, _ in enumerate(str(x), 1):
         pass
     return length
 
 
 def reverse_me(x=""):
-    """implementation of a basic reverse order function"""
+    """a basic reverse order function"""
     return x[::-1]
     # # alternative algorithms with while and for loops outside of a function
     # index = len(x)-1
@@ -28,7 +28,7 @@ def reverse_me(x=""):
 
 
 def mirror_me(x=""):
-    """implementation of a basic mirror sting function, as a side-effect of the above reversed order algorithms"""
+    """a basic mirror sting function, as a side-effect of the above reversed order algorithms"""
     # if len(x) == 0:
     #     return x
     # else:
@@ -40,7 +40,7 @@ def mirror_me(x=""):
 
 
 def is_palindrome(x):
-    """implementation of a basic palindrome function, as a side-effect of the above mirror function,
+    """a basic palindrome function, as a side-effect of the above mirror function,
     shorthand alternative with slicing x == x[::-1]
     """
     x = str(x).casefold()
@@ -88,6 +88,11 @@ def fizz_buzz(num: int):
 #         the_file.write("<div>" + str(fizz_buzz(_)) + "</div>\n")
 # with open("fizzbuzz.html", "a") as the_file:
 #     the_file.write("</body>\n</html>")
+
+
+def filter_vowels(string):
+    filtered = "".join([character for character in string if character.casefold() not in "aouei"]).split()
+    return " ".join(filtered)
 
 
 def is_valid_card(x: str) -> str:
