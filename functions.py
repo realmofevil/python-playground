@@ -90,8 +90,8 @@ def fizz_buzz(num: int):
 #     the_file.write("</body>\n</html>")
 
 
-def filter_vowels(string):
-    filtered = "".join([character for character in string if character.casefold() not in "aouei"]).split()
+def filter_char(string, filtering="aouei"):
+    filtered = "".join([character for character in string if character.casefold() not in filtering]).split()
     return " ".join(filtered)
 
 
