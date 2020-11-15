@@ -95,6 +95,24 @@ def filter_char(string, filtering="aouei"):
     return " ".join(filtered)
 
 
+def mario():
+    """tasked by https://cs50.harvard.edu/x/2020/psets/1/mario/less/ and
+    https://cs50.harvard.edu/x/2020/psets/1/mario/more/
+    actually could be used as a template for drawing other figures as well
+    here's an equilateral triangle: print((h - _) * " " + (_ - 1) * "#" + _ * "#")
+    left-sided triangle: print(_ * "#")
+    right-sided triangle: print((h - _) * " " + _ * "#")
+    """
+    while True:
+        h = input("Height (1-8): ")
+        if h.isdigit() and int(h) in range(1, 9):
+            h = int(h)
+            for _ in range(1, h+1):
+                print((h - _) * " " + _ * "#" + "  " + _ * "#")
+            break
+        return mario()
+
+
 def is_valid_card(x: str) -> str:
     """implementation of the https://en.wikipedia.org/wiki/Luhn_algorithm for bank card validation,
     tasked by https://cs50.harvard.edu/x/2020/psets/1/credit/
