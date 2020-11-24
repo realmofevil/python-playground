@@ -1,4 +1,4 @@
-from datetime import datetime, date     # , timedelta
+from datetime import datetime, date, timedelta
 import json
 import requests
 
@@ -13,9 +13,11 @@ header = {"Authorization": "token_goes_here"}
 
 open_today = 0
 resolved_today = 0
-today = date.today()    # - timedelta(days=1)
+today = date.today() - timedelta(days=0)
 
-for project in projects:
+with open("project_stats.txt", "a") as stats_file:
+    stats_file.write(f"{today:%d %b %Y}, ")
+for index, project in enumerate(projects, start=1):
     response = requests.get(project, headers=header)
     issues = response.json()["issues"]    # JSON object to a dict inside a list
     if "filter_id=100" in project:
@@ -24,8 +26,9 @@ for project in projects:
         get_datetime = [issue["updated_at"] for issue in issues]    # %Y-%m-%dT%H:%M:%S%z ISO 8601 format
         resolved_today = [datetime.fromisoformat(issue).date() for issue in get_datetime].count(today)
         with open("project_stats.txt", "a") as stats_file:
-            stats_file.write(f"{today:%d %b %Y}, Open: {open_today} / Resolved: {resolved_today} -"
-                             f" {'SimsWorld' if 'project_id=37' in project else 'JA'}\n")
+            stats_file.write(f"{'SimsWorld' if 'project_id=37' in project else 'JA'}: "
+                             f"{{Open: {open_today}, Resolved: {resolved_today}}}"
+                             f"{', ' if len(projects) > index else chr(10)}")
         open_today = 0
         resolved_today = 0
 
