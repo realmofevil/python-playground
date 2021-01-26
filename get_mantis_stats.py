@@ -11,6 +11,14 @@ projects = [bacon_open_url, bacon_closed_url, zulu_open_url, zulu_closed_url]
 
 header = {"Authorization": "token_goes_here"}
 
+
+def get_project_data(project):
+    """a REST API client"""
+    response = requests.get(project, headers=header)
+    issues = response.json()["issues"]  # JSON object to a dict inside a list
+    return issues
+
+
 open_today = 0
 resolved_today = 0
 today = date.today() - timedelta(days=0)
@@ -18,8 +26,7 @@ today = date.today() - timedelta(days=0)
 with open("project_stats.txt", "a") as stats_file:
     stats_file.write(f"{today:%d %b %Y}, ")
 for index, project in enumerate(projects, start=1):
-    response = requests.get(project, headers=header)
-    issues = response.json()["issues"]    # JSON object to a dict inside a list
+    issues = get_project_data(project)
     if "filter_id=100" in project:
         open_today += len([issue["id"] for issue in issues])
     elif "filter_id=1115" in project:
