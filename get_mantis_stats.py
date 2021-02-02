@@ -12,11 +12,10 @@ projects = [bacon_open_url, bacon_closed_url, zulu_open_url, zulu_closed_url]
 header = {"Authorization": "token_goes_here"}
 
 
-def get_project_data(project):
+def get_project_data(url):
     """a REST API client"""
-    response = requests.get(project, headers=header)
-    issues = response.json()["issues"]  # JSON object to a dict inside a list
-    return issues
+    response = requests.get(url, headers=header)
+    return response.json()["issues"]   # JSON object to a dict inside a list
 
 
 open_today = 0
