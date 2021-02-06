@@ -1,13 +1,11 @@
 from datetime import datetime, date, timedelta
-import json
 import requests
 
-bacon_open_url = "http://mantis.com/api/rest/issues?project_id=37&filter_id=100&page_size=900"
-bacon_closed_url = "http://mantis.com/api/rest/issues?project_id=37&filter_id=1115&page_size=170"
-zulu_open_url = "http://mantis.com/api/rest/issues?project_id=36&filter_id=100&page_size=900"
-zulu_closed_url = "http://mantis.com/api/rest/issues?project_id=36&filter_id=1115&page_size=170"
+project_url = "http://mantis.com/api/rest/issues?project_id="
+filter_open, filter_closed = "&filter_id=100&page_size=900", "&filter_id=1115&page_size=170"
+project_id = ["36", "37"]
 
-projects = [bacon_open_url, bacon_closed_url, zulu_open_url, zulu_closed_url]
+projects = [project_url + _ + filter_open for _ in project_id] + [project_url + _ + filter_closed for _ in project_id]
 
 header = {"Authorization": "token_goes_here"}
 
@@ -24,11 +22,11 @@ today = date.today() - timedelta(days=0)
 
 with open("project_stats.txt", "a") as stats_file:
     stats_file.write(f"{today:%d %b %Y}, ")
-for index, project in enumerate(projects, start=1):
+for index, project in enumerate(sorted(projects), start=1):
     issues = get_project_data(project)
-    if "filter_id=100" in project:
+    if filter_open in project:
         open_today += len([issue["id"] for issue in issues])
-    elif "filter_id=1115" in project:
+    elif filter_closed in project:
         get_datetime = [issue["updated_at"] for issue in issues]    # %Y-%m-%dT%H:%M:%S%z ISO 8601 format
         resolved_today = [datetime.fromisoformat(issue).date() for issue in get_datetime].count(today)
         with open("project_stats.txt", "a") as stats_file:
@@ -51,10 +49,9 @@ for index, project in enumerate(projects, start=1):
 # print(issues[0]["id"], issues[0]["project"]["name"])
 
 
-# def prettify(x):
-#     formatted = json.dumps(x, indent=3)
-#     print(formatted)
+# def prettify(json_to_format):
+#     import json
+#     return print(json.dumps(json_to_format, indent=3))
 
 
-# data = response.json()
-# prettify(data)
+# prettify(response.json())
