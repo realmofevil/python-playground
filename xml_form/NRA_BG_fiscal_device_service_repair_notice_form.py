@@ -18,7 +18,7 @@ try:
     with open("config.json", encoding="utf-8") as config_data:
         config = json.load(config_data)
 
-    table = "".join(glob.glob("1.xls*")[0])
+    table = "".join(glob.glob(f'{config["file"]}.xls*')[0])
 
     # pandas.read_excel("1.xls", sheet_name="Задания за сервиз2", header=1, usecols=("J"))
     df = pandas.read_excel(table, sheet_name="Задания за сервиз2", header=1)
@@ -50,9 +50,11 @@ try:
 
 except FileNotFoundError as e:
     print(e)
-except IndexError as e:
-    print("1.xls or 1.xlsx file is not found")
+except IndexError:
+    print(f'{config["file"]}.xls(x) is missing')
 except ValueError as e:
     print(e)
 except KeyError as e:
-    print(f"Field {e} is not found")
+    print(f"Field {e} is missing")
+finally:
+    input("Press Enter to close")
