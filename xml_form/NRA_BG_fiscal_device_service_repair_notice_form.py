@@ -20,7 +20,7 @@ def main():
         config = json.load(config_data)
 
     if not glob.glob(f'{config["file"]}.xls*'):
-        raise SystemExit(f'{config["file"]}.xls(x) is missing')
+        print(f'{config["file"]}.xls(x) is missing')
     else:
         table = "".join(glob.glob(f'{config["file"]}.xls*')[0])
 
@@ -57,10 +57,10 @@ if __name__ == "__main__":
     try:
         main()
     except FileNotFoundError:
-        raise SystemExit(f"{SETTINGS} is missing")
+        print(f"{SETTINGS} is missing")
     except ValueError as e:
-        raise SystemExit(e)
+        print(e)
     except KeyError as e:
-        raise SystemExit(f"Field {e} is missing")
+        print(f"Field {e} is missing")
     finally:
         input("Press <Enter> to close")
