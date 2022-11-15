@@ -2,6 +2,7 @@
 import json
 import glob
 import pandas
+SETTINGS = "config.json"
 
 
 def xml_body(column_data) -> str:
@@ -14,11 +15,14 @@ def xml_body(column_data) -> str:
     return "".join(body)
 
 
-try:
-    with open("config.json", encoding="utf-8") as config_data:
+def main():
+    with open(SETTINGS, encoding="utf-8") as config_data:
         config = json.load(config_data)
 
-    table = "".join(glob.glob(f'{config["file"]}.xls*')[0])
+    if not glob.glob(f'{config["file"]}.xls*'):
+        raise SystemExit(f'{config["file"]}.xls(x) is missing')
+    else:
+        table = "".join(glob.glob(f'{config["file"]}.xls*')[0])
 
     # pandas.read_excel("1.xls", sheet_name="Задания за сервиз2", header=1, usecols=("J"))
     df = pandas.read_excel(table, sheet_name="Задания за сервиз2", header=1)
@@ -48,13 +52,15 @@ try:
     with open(f"{company_id} {company_name}.xml", "w", encoding="windows-1251") as file:
         file.write(xml_header + xml_body(reg_numbers) + xml_footer)
 
-except FileNotFoundError as e:
-    print(e)
-except IndexError:
-    print(f'{config["file"]}.xls(x) is missing')
-except ValueError as e:
-    print(e)
-except KeyError as e:
-    print(f"Field {e} is missing")
-finally:
-    input("Press Enter to close")
+
+if __name__ == "__main__":
+    try:
+        main()
+    except FileNotFoundError:
+        raise SystemExit(f"{SETTINGS} is missing")
+    except ValueError as e:
+        raise SystemExit(e)
+    except KeyError as e:
+        raise SystemExit(f"Field {e} is missing")
+    finally:
+        input("Press <Enter> to close")
