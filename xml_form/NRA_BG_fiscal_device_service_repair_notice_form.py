@@ -5,7 +5,12 @@ import pandas
 SETTINGS = "config.json"
 
 
-def xml_body(column_data) -> str:
+def config() -> dict:
+    with open(SETTINGS, encoding="utf-8") as config_data:
+        return json.load(config_data)
+
+
+def xml_body(column_data: list) -> str:
     body = []
     for value in column_data:
         body.append(f"""
@@ -16,13 +21,7 @@ def xml_body(column_data) -> str:
 
 
 def main():
-    with open(SETTINGS, encoding="utf-8") as config_data:
-        config = json.load(config_data)
-
-    if not glob.glob(f'{config["file"]}.xls*'):
-        print(f'{config["file"]}.xls(x) is missing')
-    else:
-        table = "".join(glob.glob(f'{config["file"]}.xls*')[0])
+    table = "".join(glob.glob(f'{config()["file"]}.xls*')[0])
 
     # pandas.read_excel("1.xls", sheet_name="Задания за сервиз2", header=1, usecols=("J"))
     df = pandas.read_excel(table, sheet_name="Задания за сервиз2", header=1)
@@ -32,17 +31,17 @@ def main():
 
     xml_header = f"""<?xml version="1.0" encoding="WINDOWS-1251"?>
 <dec44a2 xmlns="http://inetdec.nra.bg/xsd/dec_44a2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://inetdec.nra.bg/xsd/dec_44a2.xsd http://inetdec.nra.bg/xsd/dec_44a2.xsd">
-  <name>{config["name"]}</name>
-  <bulstat>{config["bulstat"]}</bulstat>
-  <telcode>{config["telcode"]}</telcode>
-  <telnum>{config["telnum"]}</telnum>
-  <authorizeid>{config["authorizeid"]}</authorizeid>
-  <autorizecode>{config["autorizecode"]}</autorizecode>
-  <fname>{config["fname"]}</fname>
-  <sname>{config["sname"]}</sname>
-  <tname>{config["tname"]}</tname>
+  <name>{config()["name"]}</name>
+  <bulstat>{config()["bulstat"]}</bulstat>
+  <telcode>{config()["telcode"]}</telcode>
+  <telnum>{config()["telnum"]}</telnum>
+  <authorizeid>{config()["authorizeid"]}</authorizeid>
+  <autorizecode>{config()["autorizecode"]}</autorizecode>
+  <fname>{config()["fname"]}</fname>
+  <sname>{config()["sname"]}</sname>
+  <tname>{config()["tname"]}</tname>
   <id>{company_id}</id>
-  <code>{config["code"]}</code>
+  <code>{config()["code"]}</code>
   <fuiasutd>"""
 
     xml_footer = """
@@ -58,6 +57,8 @@ if __name__ == "__main__":
         main()
     except FileNotFoundError:
         print(f"{SETTINGS} is missing")
+    except IndexError:
+        print(f'{config()["file"]}.xls(x) is missing')
     except ValueError as e:
         print(e)
     except KeyError as e:
