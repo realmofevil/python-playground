@@ -18,15 +18,16 @@ def xml_body(column_data: list) -> str:
       <fdrid>{value}</fdrid>
    </rowenum>""")
     return "".join(body)
+    # return "\n".join([f"<rowenum>\n  <fdrid>{value}</fdrid>\n</rowenum>" for value in column_data])
 
 
 def main():
     table = "".join(glob.glob(f'{config()["file"]}.xls*')[0])
 
     # pandas.read_excel("1.xls", sheet_name="Задания за сервиз2", header=1, usecols=("J"))
-    df = pandas.read_excel(table, sheet_name="Задания за сервиз2", header=1)
+    df = pandas.read_excel(table, sheet_name="Задания за сервиз2", header=1, dtype={"Идентификационен No.": str})
     reg_numbers = df["Регистрационен номер в НАП"].tolist()
-    company_id = df["Идентификационен No."].values[2]
+    company_id = df["Идентификационен No."].iloc[2]
     company_name = df["Име"].values[2]
 
     xml_header = f"""<?xml version="1.0" encoding="WINDOWS-1251"?>
